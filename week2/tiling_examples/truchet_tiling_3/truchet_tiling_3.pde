@@ -1,71 +1,20 @@
 //truchet tiling 3
-import controlP5.*;
-ControlP5 cp5;
 
 float rW = 40;
 float rH = 40;
-float v1 = 0.25;
-float v2 = 0.25;
-float v3 = 0.25;
-float v4 = 0.25;
+float[] patternA = {0.5, 1, 0.25, 0.75};
+float[] patternB = {1, 0.5, 0.75, 0.25};
+float[] patternC = {0.75, 0.25, 1, 0.5};
+float[] patternD = {0.25, 0.75, 0.5, 1};
 
-Controller v1Slider;
-Controller v2Slider;
-Controller v3Slider;
-Controller v4Slider;
+float [][] patternList = {patternA, patternB, patternC, patternD};
 
 void setup() {
   size(800, 800);
-  
-  cp5 = new ControlP5(this);
-
-  v1Slider =  cp5.addSlider("v1")
-    .setPosition(25, 25)
-    .setRange(0.25,1)
-    .setNumberOfTickMarks(4)
-    ;
-    
-   v2Slider =  cp5.addSlider("v2")
-    .setPosition(25, 25*2)
-    .setRange(0.25,1)
-    .setNumberOfTickMarks(4)
-    ;
-    
-    v3Slider =  cp5.addSlider("v3")
-    .setPosition(25, 25*2)
-    .setRange(0.25,1)
-    .setNumberOfTickMarks(4)
-    ;
-    
-    v3Slider =  cp5.addSlider("v3")
-    .setPosition(25, 25*3)
-    .setRange(0.25,1)
-    .setNumberOfTickMarks(4)
-    ;
-    
-    v4Slider =  cp5.addSlider("v4")
-    .setPosition(25, 25*4)
-    .setRange(0.25,1)
-    .setNumberOfTickMarks(4)
-    ;
-
-
-
-
-
-}
-  
-void draw() {
-background(0);
+  background(0);
   noFill();
   stroke(255);
 
-float[] patternA = {v1, v2, v3, v4};
-float[] patternB = {v4, v1, v2, v3};
-float[] patternC = {v3, v4, v1, v2};
-float[] patternD = {v2, v3, v4, v1};
-
-float [][] patternList = {patternA, patternB, patternC, patternD};
 
   int patternIndex = 0;
   for (int j=0; j<height/rH; j++) {
@@ -87,8 +36,8 @@ float [][] patternList = {patternA, patternB, patternC, patternD};
     }
   }
 }
-
-
+void draw() {
+}
 
 float toQuadrant(float v) {
   if (v <=0.25) {
