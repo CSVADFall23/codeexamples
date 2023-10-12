@@ -23,6 +23,10 @@ To use:
   corresponding analog input pin). Note that the readings from unconnected pins will fluctuate randomly. 
   
 For more information, see: http://playground.arduino.cc/Interfacing/Processing
+*
+
+
+
 */
 
 import processing.serial.*;
@@ -30,6 +34,16 @@ import processing.serial.*;
 import cc.arduino.*;
 
 Arduino arduino;
+int xPin = 3;
+int yPin = 4;
+int zPin = 5;
+
+int xMin = 279;
+int xMax = 402;
+int yMin = 267;
+int yMax = 400; 
+int zMin = 281;
+int zMax = 414;
 
 void setup() {
   size(470, 280);
@@ -45,20 +59,17 @@ void setup() {
   // Alternatively, use the name of the serial port corresponding to your
   // Arduino (in double-quotes), as in the following line.
   arduino = new Arduino(this, "/dev/tty.usbmodem21101", 57600);
-  
-  // Set the Arduino digital pin 13 as inputs.
-  arduino.pinMode(13, Arduino.INPUT);
 }
 
 void draw() {
-  background(255);
-  stroke(0);
+  float xAxis = map(arduino.analogRead(xPin),xMin,xMax,0,255);
+  float yAxis = map(arduino.analogRead(yPin),yMin,yMax,0,255);
+  float zAxis = map(arduino.analogRead(zPin),zMin,zMax,0,255);
+
+  println(arduino.analogRead(xPin)+","+arduino.analogRead(yPin)+","+arduino.analogRead(zPin));
+  background(xAxis,yAxis,zAxis);
+
+
+
   
-  // Draw a filled box if digital pin 13 reads HIGH (5 volts).
-  if (arduino.digitalRead(13) == Arduino.HIGH)
-      fill(0);
-    else
-      noFill();
-      
-    rect(width/2-50, height/2-50, 100, 100);
 }
