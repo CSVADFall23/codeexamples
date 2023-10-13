@@ -44,7 +44,7 @@ void setup() {
   
   // Alternatively, use the name of the serial port corresponding to your
   // Arduino (in double-quotes), as in the following line.
-  arduino = new Arduino(this, "/dev/tty.usbmodem21101", 57600);
+  arduino = new Arduino(this, "/dev/tty.usbmodem11101", 57600);
 }
 
 void draw() {
@@ -55,6 +55,6 @@ void draw() {
   noFill();
   println(arduino.analogRead(0));
   //for (int i = 0; i <= 5; i++) {
-    ellipse(width/2, height/2, arduino.analogRead(2) / 6, arduino.analogRead(2) / 6);
+    ellipse(width/2, height/2, arduino.analogRead(0) / 6, arduino.analogRead(0) / 6);
   //}
 }
